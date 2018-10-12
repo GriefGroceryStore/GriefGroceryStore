@@ -10,14 +10,4 @@ FROM ZJU. An Android Application for people to sooth their grief.
 该仓库下载到本地后，使用Android Studio打开之后需要在工具栏选择Build->ReBuild Project；其余报错BUG暂未发现。
 
 ## 命名规则及代码规范
-### 1、资源文件夹结构
-      ##### res
-      
-      -anim //存放动画
-      -drawable(xml or selector) 
-      -mipmap(pixel image) 
-      -layout 
-      -values
-      
-      #### 
-      
+详情见 [一份小组协同开发可以使用的 Android 代码规范](https://www.aliyun.com/jiaocheng/20572.html)
