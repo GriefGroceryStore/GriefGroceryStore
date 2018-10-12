@@ -11,3 +11,4 @@ FROM ZJU. An Android Application for people to sooth their grief.
 
 ## 命名规则及代码规范
 详情见 [一份小组协同开发可以使用的 Android 代码规范](https://www.aliyun.com/jiaocheng/20572.html)
+请尽量按照代码规范进行开发及维护。
