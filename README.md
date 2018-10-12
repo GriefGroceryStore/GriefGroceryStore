@@ -8,3 +8,16 @@ FROM ZJU. An Android Application for people to sooth their grief.
 
 ## 使用说明
 该仓库下载到本地后，使用Android Studio打开之后需要在工具栏选择Build->ReBuild Project；其余报错BUG暂未发现。
+
+## 命名规则及代码规范
+### 1、资源文件夹结构
+      ##### res
+      
+      -anim //存放动画
+      -drawable(xml or selector) 
+      -mipmap(pixel image) 
+      -layout 
+      -values
+      
+      #### 
+      
