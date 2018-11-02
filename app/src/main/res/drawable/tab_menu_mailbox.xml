@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 此处加入“信箱”按钮的UI图标（点击状态/一般状态） -->
+    <item android:state_checked="true"/>
+    <item />
+</selector>

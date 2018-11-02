@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">解忧杂货店</string>
+
+    <!-- 导航栏提示文字 -->
+    <string name="tab_menu_firstpage">首页</string>
+    <string name="tab_menu_mailbox">信箱</string>
+    <string name="tab_menu_user">我的</string>
+    <string name="tab_menu_write">写信</string>
+
+    <!-- 导航栏frame layout测试文字 -->
+    <string name="frame_layout_test">test</string>
+
 </resources>

@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- 导航栏（点击状态/一般状态）文字颜色 -->
+    <color name="tab_menu_text_check">#FF7D70</color>
+    <color name="tab_menu_text_normal">#A1A1A1</color>
+
+    <!-- 导航栏（点击状态/一般状态）背景颜色 -->
+    <color name="tab_menu_background_check">#A1A1A1</color>
+    <color name="tab_menu_background_normal">#FFFFFF</color>
 </resources>
