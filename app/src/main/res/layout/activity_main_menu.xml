@@ -5,12 +5,37 @@
     android:layout_height="match_parent"
     tools:context="com.example.griefgrocerystore.MainMenuActivity">
 
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/top_bar_background">
+
+        <TextView
+            android:id="@+id/text_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/text_top_bar"
+            android:textColor="@color/top_bar_text"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/div_white" />
+
+    </RelativeLayout>
+    
     <!-- 导航栏 -->
     <RadioGroup
         android:id="@+id/tab_menu_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/tab_menu_background"
         android:orientation="horizontal">
 
         <!-- 以下RadioButton缺少drawableTop tag显示导航栏小图标 -->
@@ -33,12 +58,18 @@
 
     </RadioGroup>
 
-    <FrameLayout
-        android:id="@+id/frame_layout_content"
+    <View
+        android:id="@+id/div_tab_menu"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@id/tab_menu_bar"
+        android:background="@color/div_white"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tab_menu_bar">
-
-    </FrameLayout>
+        android:layout_above="@id/div_tab_menu"
+        android:layout_below="@id/top_bar"/>
 
 </RelativeLayout>

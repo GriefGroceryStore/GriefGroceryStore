@@ -1,92 +1,100 @@
 package com.example.griefgrocerystore;
 
-import android.app.FragmentManager; // 主要用于Activity中操作Fragment
-import android.app.FragmentTransaction; // Fragment事务处理
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,
+        ViewPager.OnPageChangeListener {
+    // UI控件
     private RadioGroup mTabMenuBar;
     private RadioButton mTabMenuFirstPage;
+    private RadioButton mTabMenuMailbox;
+    private RadioButton mTabMenuUser;
+    private RadioButton mTabMenuWrite;
+    private ViewPager mViewPager;
+    // FragmentPagerAdapter
+    private MyFragmentPagerAdapter mFragmentPagerAdapter;
+    // 页面表示常量
+    public static final int PAGE_ONE = 0;
+    public static final int PAGE_TWO = 1;
+    public static final int PAGE_THREE = 2;
+    public static final int PAGE_FOUR = 3;
 
-    // Fragment
-    private MenuFragment mFragmentFirstPage, mFragmentMailbox, mFragmentUser, mFragmentWrite;
-    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        mFragmentManager = getFragmentManager(); // 获取FragmentManager
-        // 为RadioGroup注册监听事件
-        mTabMenuBar = findViewById(R.id.tab_menu_bar);
-        mTabMenuBar.setOnCheckedChangeListener(new TabMenuBarListener());
-        // 获取“首页”按钮，并设置为选中状态
-        mTabMenuFirstPage = findViewById(R.id.tab_menu_firstpage);
+        mFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+        bindViews();
+        // 设置“首页”为初始选中状态
         mTabMenuFirstPage.setChecked(true);
     }
 
-    private class TabMenuBarListener implements RadioGroup.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(RadioGroup mGroup, int checkedId) {
-            FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction(); // 开启一个事务
-            hideAllFragment(mFragmentTransaction);
-            switch (checkedId) {
-                case R.id.tab_menu_firstpage:
-                    if(mFragmentFirstPage == null) {
-                        mFragmentFirstPage = new MenuFragment();
-                        mFragmentFirstPage.setContent("首页");
-                        mFragmentTransaction.add(R.id.frame_layout_content, mFragmentFirstPage); // 向Activity中添加Fragment
-                    }
-                    else {
-                        mFragmentTransaction.show(mFragmentFirstPage); // 显示Fragment
-                    }
-                    break;
-                case R.id.tab_menu_mailbox:
-                    if(mFragmentMailbox == null) {
-                        mFragmentMailbox = new MenuFragment();
-                        mFragmentMailbox.setContent("信箱");
-                        mFragmentTransaction.add(R.id.frame_layout_content, mFragmentMailbox);
-                    }
-                    else {
-                        mFragmentTransaction.show(mFragmentMailbox);
-                    }
-                    break;
-                case R.id.tab_menu_user:
-                    if(mFragmentUser == null) {
-                        mFragmentUser = new MenuFragment();
-                        mFragmentUser.setContent("我的");
-                        mFragmentTransaction.add(R.id.frame_layout_content, mFragmentUser);
-                    }
-                    else {
-                        mFragmentTransaction.show(mFragmentUser);
-                    }
-                    break;
-                case R.id.tab_menu_write:
-                    if(mFragmentWrite == null) {
-                        mFragmentWrite = new MenuFragment();
-                        mFragmentWrite.setContent("写信");
-                        mFragmentTransaction.add(R.id.frame_layout_content, mFragmentWrite);
-                    }
-                    else {
-                        mFragmentTransaction.show(mFragmentWrite);
-                    }
-                    break;
-            }
-            mFragmentTransaction.commit(); // 提交事务
+    private void bindViews() {
+        // findViewById
+        mTabMenuBar = findViewById(R.id.tab_menu_bar);
+        mTabMenuFirstPage = findViewById(R.id.tab_menu_firstpage);
+        mTabMenuMailbox = findViewById(R.id.tab_menu_mailbox);
+        mTabMenuUser = findViewById(R.id.tab_menu_user);
+        mTabMenuWrite = findViewById(R.id.tab_menu_write);
+        // 为RadioButton注册监听事件
+        mTabMenuBar.setOnCheckedChangeListener(this);
+        // 设置ViewPager
+        mViewPager = findViewById(R.id.viewpager);
+        mViewPager.setAdapter(mFragmentPagerAdapter);
+        mViewPager.setCurrentItem(0);
+        // 为ViewPager设置监听器
+        mViewPager.addOnPageChangeListener(this);
+    }
+
+    // RadioGroup监听函数重写
+    @Override
+    public void onCheckedChanged(RadioGroup mGroup, int checkedId) {
+        switch (checkedId) {
+            case R.id.tab_menu_firstpage:
+                mViewPager.setCurrentItem(PAGE_ONE);
+                break;
+            case R.id.tab_menu_mailbox:
+                mViewPager.setCurrentItem(PAGE_TWO);
+                break;
+            case R.id.tab_menu_user:
+                mViewPager.setCurrentItem(PAGE_THREE);
+                break;
+            case R.id.tab_menu_write:
+                mViewPager.setCurrentItem(PAGE_FOUR);
+                break;
         }
     }
 
-    private void hideAllFragment(FragmentTransaction mFragmentTransaction) {
-        if(mFragmentFirstPage != null)
-            mFragmentTransaction.hide(mFragmentFirstPage); // 隐藏Fragment
-        if(mFragmentMailbox != null)
-            mFragmentTransaction.hide(mFragmentMailbox);
-        if(mFragmentUser != null)
-            mFragmentTransaction.hide(mFragmentUser);
-        if(mFragmentWrite != null)
-            mFragmentTransaction.hide(mFragmentWrite);
+    // 重写ViewPager页面切换处理方法
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+    @Override
+    public void onPageSelected(int position) { }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        //状态：0表示什么都没做，1正在滑动，2滑动完毕
+        if (state == 2) {
+            switch (mViewPager.getCurrentItem()) {
+                case PAGE_ONE:
+                    mTabMenuFirstPage.setChecked(true);
+                    break;
+                case PAGE_TWO:
+                    mTabMenuMailbox.setChecked(true);
+                    break;
+                case PAGE_THREE:
+                    mTabMenuUser.setChecked(true);
+                    break;
+                case PAGE_FOUR:
+                    mTabMenuWrite.setChecked(true);
+                    break;
+            }
+        }
     }
 }
