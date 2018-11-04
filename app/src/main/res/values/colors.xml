@@ -3,4 +3,25 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- 顶部标题的文字颜色 -->
+    <color name="top_bar_text">#A1A1A1</color>
+
+    <!-- 顶部标题的背景颜色 -->
+    <color name="top_bar_background">#FFFFFF</color>
+
+    <!-- 分割线颜色 -->
+    <color name="div_white">#A1A1A1</color>
+
+    <!-- 背景颜色 -->
+    <color name="default_background">#FFFFFF</color>
+
+    <!-- 导航栏（点击状态/一般状态）文字颜色 -->
+    <color name="tab_menu_text_check">#FF7D70</color>
+    <color name="tab_menu_text_normal">#A1A1A1</color>
+
+    <!-- 导航栏（点击状态/一般状态）背景颜色 -->
+    <color name="tab_menu_background_check">#A1A1A1</color>
+    <color name="tab_menu_background_normal">#FFFFFF</color>
+
 </resources>
